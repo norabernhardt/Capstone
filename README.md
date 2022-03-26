@@ -1,6 +1,8 @@
 # Homing Desire
 
 *However you define your "home", may it be your homeland, an emotional shelter for resting, or a place for a new beginning, let Homing Desire give you some options!*
+
+🚧 Still under construction 🚧
 #
 ### Tech Talk
 - Gathering data from real estate and job platforms to let you find the perfect location for your homebase according to your preferences.
@@ -12,7 +14,7 @@
 - Database
 - AWS Lambda
 - AWS Cloud Front
-- Docker Container orchastration 🐳
+- Docker container orchastration 🐳
 - Deployment via CI/CD Pipeline
 - VPC with accessible EC2 and S3, hosting an interactive map as website 🗺
 
