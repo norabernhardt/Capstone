@@ -17,6 +17,7 @@
 - VPC with accessible EC2 and S3, hosting a dashboard to send results to
 
 #
+![First Sketch](./screenshots/2022-01-31.png)
 #
 bibbo is a service developed as capstone project at the end of a 12-weeks AWS re/Start Cloud Developer Bootcamp with [neuefische - School and Pool for Digital Talent](https://www.neuefische.de/).
 
