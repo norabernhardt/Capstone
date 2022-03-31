@@ -1,5 +1,33 @@
 Resources:
-  S3Bucket:
+
+  BucketOne:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: release-service-data-catcher101
+      BucketName: bucket-two-converted-data-2022-04-27
+  BucketTwo:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: bucket-one-raw-data-2022-04-27
+  
+  DynamoDB:
+    Type: AWS::DynamoDB::Table
+    Properties: 
+      BillingMode: PROVISIONED
+      AttributeDefinitions:
+        - 
+          AttributeName: "Verfasser"
+          AttributeType: "S"
+        - 
+          AttributeName: "ISBN"
+          AttributeType: "N"
+      KeySchema: 
+        - 
+          AttributeName: "Verfasser"
+          KeyType: "HASH"
+        - 
+          AttributeName: "ISBN"
+          KeyType: "RANGE"
+      ProvisionedThroughput: 
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+      TableName: table-for-preferences
