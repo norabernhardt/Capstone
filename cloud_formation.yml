@@ -19,7 +19,7 @@ Resources:
           AttributeType: "S"
         - 
           AttributeName: "ISBN"
-          AttributeType: "N"
+          AttributeType: "S"
       KeySchema: 
         - 
           AttributeName: "Verfasser"
@@ -30,4 +30,4 @@ Resources:
       ProvisionedThroughput: 
         ReadCapacityUnits: "5"
         WriteCapacityUnits: "5"
-      TableName: table-for-preferences
+      TableName: tables-for-preferences

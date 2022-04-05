@@ -2,7 +2,6 @@
 __pycache__
 venv
 
-terrafrom/.terraform
-.terraform.lock.hcl
-terraform.tfstate
-terraform.tfstate.backup
+upload_S3
+test.py
+test2.py
