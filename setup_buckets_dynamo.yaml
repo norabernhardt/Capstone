@@ -8,6 +8,10 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: bucket-one-raw-data-2022-04-27
+# BucketThree:
+#   Type: AWS::S3::Bucket
+#   Properties:
+#     BucketName: lambda-code-bucket-2022-04-27
   
   DynamoDB:
     Type: AWS::DynamoDB::Table
@@ -30,4 +34,4 @@ Resources:
       ProvisionedThroughput: 
         ReadCapacityUnits: "5"
         WriteCapacityUnits: "5"
-      TableName: tables-for-preferences
+      TableName: table-for-preferences
