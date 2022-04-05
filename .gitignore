@@ -3,3 +3,5 @@ __pycache__
 venv
 
 upload_S3
+test.py
+test2.py
