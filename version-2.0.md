@@ -1,1 +1,0 @@
-![First Sketch](./screenshots/2022-01-31.png)
