@@ -1,0 +1,14 @@
+Resources:
+  LambdaFunction:
+
+    Type: AWS::Lambda::Function
+    Properties: 
+      Runtime: python3.9
+      Role: arn:aws:iam::248461369890:role/LabRole
+      Handler: write_to_dynamodb.write_to_dynamo
+      FunctionName: fetch-data_write-table
+      Code:
+          S3Bucket: 'lambda-code-bucket-2022-04-27'
+          S3Key: 'write_to_dynamodb.zip'
+
+      
