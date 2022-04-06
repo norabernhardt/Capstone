@@ -11,4 +11,11 @@ Resources:
           S3Bucket: 'lambda-code-bucket-2022-04-27'
           S3Key: 'write_to_dynamodb.zip'
 
+  CloudWatchTrigger:
+    Type: AWS::CloudWatch::Alarm
+    Properties: 
+      AlarmName: 
+      ActionsEnabled: TRUE
+      ComparisonOperator:
+
       
