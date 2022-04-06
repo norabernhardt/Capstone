@@ -10,6 +10,8 @@ def write_to_dynamo(csv_content):
     table=dynamodb.Table(tablename)
     lines=csv_content.splitlines()
     for line in lines:
+        if 'Titel' in line:
+            continue
         content=line.split("\t")
         title=content[0]
         author=content[2]
