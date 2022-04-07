@@ -12,7 +12,6 @@ def lambda_handler(event, context):
         body=obj.get()["Body"].read()
         write_to_dynamo(body.decode("utf-8"))
 
-
 def write_to_dynamo(csv_content):
     table=dynamodb.Table(tablename)
     lines=csv_content.splitlines()

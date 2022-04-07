@@ -3,15 +3,16 @@ Resources:
   BucketOne:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: bucket-two-converted-data-2022-04-27
+      BucketName: bucket-one-raw-data-2022-04-27
+
   BucketTwo:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: bucket-one-raw-data-2022-04-27
-  BucketThree:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: lambda-code-bucket-2022-04-27
+      BucketName: bucket-two-converted-data-2022-04-27
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Event: 's3:ObjectCreated:*'
+            Function: arn:aws:lambda:eu-central-1:248461369890:function:fetch-data_write-table
   
   DynamoDB:
     Type: AWS::DynamoDB::Table

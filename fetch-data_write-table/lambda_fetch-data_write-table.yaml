@@ -1,6 +1,11 @@
 Resources:
-  LambdaFunction:
+  
+  BucketThree:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: lambda-code-bucket-2022-04-27
 
+  LambdaFunction:
     Type: AWS::Lambda::Function
     Properties: 
       Runtime: python3.9
@@ -12,11 +17,10 @@ Resources:
           S3Bucket: 'lambda-code-bucket-2022-04-27'
           S3Key: 'code_for_zipping.zip'
 
-  # CloudWatchTrigger:
-  #   Type: AWS::CloudWatch::Alarm
-  #   Properties: 
-  #     AlarmName: 
-  #     ActionsEnabled: TRUE
-  #     ComparisonOperator:
-
-      
+  S3InvokeLambdaPermission: 
+    Type: AWS::Lambda::Permission
+    Properties: 
+      FunctionName: !Ref LambdaFunction
+      Action: lambda:InvokeFunction
+      Principal: s3.amazonaws.com
+      SourceArn: !Sub arn:aws:s3:::bucket-two-converted-data-2022-04-27
