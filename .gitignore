@@ -1,7 +1,4 @@
 .DS_Store
 __pycache__
-venv
-
 upload_S3
-test.py
-test2.py
+code_for_zipping.zip

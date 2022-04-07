@@ -1,14 +1,26 @@
 Resources:
-  LambdaFunction:
+  
+  BucketThree:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: lambda-code-bucket-2022-04-27
 
+  LambdaFunction:
     Type: AWS::Lambda::Function
     Properties: 
       Runtime: python3.9
       Role: arn:aws:iam::248461369890:role/LabRole
-      Handler: write_to_dynamodb.write_to_dynamo
+      Handler: code_for_zipping.lambda_handler
       FunctionName: fetch-data_write-table
+      Timeout: 900
       Code:
           S3Bucket: 'lambda-code-bucket-2022-04-27'
-          S3Key: 'write_to_dynamodb.zip'
+          S3Key: 'code_for_zipping.zip'
 
-      
+  S3InvokeLambdaPermission: 
+    Type: AWS::Lambda::Permission
+    Properties: 
+      FunctionName: !Ref LambdaFunction
+      Action: lambda:InvokeFunction
+      Principal: s3.amazonaws.com
+      SourceArn: !Sub arn:aws:s3:::bucket-two-converted-data-2022-04-27
