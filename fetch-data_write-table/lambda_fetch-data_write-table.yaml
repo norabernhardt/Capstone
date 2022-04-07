@@ -13,6 +13,7 @@ Resources:
       Handler: code_for_zipping.lambda_handler
       FunctionName: fetch-data_write-table
       Timeout: 900
+      
       Code:
           S3Bucket: 'lambda-code-bucket-2022-04-27'
           S3Key: 'code_for_zipping.zip'

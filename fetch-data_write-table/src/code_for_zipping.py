@@ -17,19 +17,6 @@ def write_to_dynamo(csv_content):
     lines=csv_content.splitlines()
     for line in lines[1:]:
         content=line.split("\t")
-        title=content[0]
-        author=content[2]
-        publisher=content[3]
-        place=content[4]
-        year=content[5]
-        isbn=content[7]
-        edition=content[8]
-        pages=content[10]
-        ddc=content[19]
-        keywords=content[20]
-        table_url=content[22]
-        summary_url=content[23]
-        
         table.put_item(Item={
             'title': content[0],
             'author': content[2],
