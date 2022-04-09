@@ -34,8 +34,10 @@ Resources:
       TableName: table-for-preferences
       StreamSpecification:
         StreamViewType: NEW_IMAGE
-     # DynamoId: !Ref DynamoDB
+     
 Outputs:
   DynamoStreamArn:
     Description: "Stream Arn of DynamoDB"
     Value: !GetAtt DynamoDB.StreamArn
+  DynamoDBTableName:
+    Value: !Ref DynamoDB
