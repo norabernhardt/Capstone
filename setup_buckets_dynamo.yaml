@@ -34,10 +34,27 @@ Resources:
       TableName: table-for-preferences
       StreamSpecification:
         StreamViewType: NEW_IMAGE
-     
+    DependsOn: BucketTwo
+
+  EventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 300
+      Enabled: True
+      EventSourceArn: !GetAtt DynamoDB.StreamArn
+      FunctionName: !ImportValue snsLambda
+      StartingPosition: "LATEST"
+    DependsOn: DynamoDB
+
 Outputs:
-  DynamoStreamArn:
-    Description: "Stream Arn of DynamoDB"
-    Value: !GetAtt DynamoDB.StreamArn
   DynamoDBTableName:
     Value: !Ref DynamoDB
+    Export:
+      Name: dbName
+  DynamoStreamArn:
+    Description: "Stream Arn of DynamoDB"
+    Value: DynamoDB.StreamArn
+    Export:
+      Name: StreamDB
+
+

@@ -29,5 +29,9 @@ Outputs:
   LambdaOneArn:
     Description: "Arn of LambdaFunctionOne"
     Value: !GetAtt LambdaFunctionOne.Arn
+    Export:
+      Name: triggerLambda
   BucketThreeName:
     Value: !Ref BucketThree
+    Export: 
+      Name: CodeBucket
