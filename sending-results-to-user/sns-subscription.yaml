@@ -1,34 +1,37 @@
+Parameters:
+  LambdaFunction:
+    Default: python3.9
+    Type: String
+
 Resources:
 
-  LambdaFunctionTwo:
+  ResultsSendingLambdaFunction:
     Type: AWS::Lambda::Function
     Properties: 
-      Runtime: python3.9
+      FunctionName: handle_new_titles_sns
       Role: arn:aws:iam::248461369890:role/LabRole
       Handler: handle_new_titles.lambda_sns
-      FunctionName: handle_new_titles_sns
       Timeout: 900
       Code:
-          S3Bucket: !ImportValue CodeBucket
+          S3Bucket: !ImportValue LambdaCodeBucket
           S3Key: 'handle_new_titles.zip'
   
-
-  
-  SnsTopic:
+  ResultsSendingTopic:
     Type: AWS::SNS::Topic
     Properties: 
-      TopicName: SnsRelevantTitles
-
+      TopicName: ResultsSendingTopic
+  
   TopicSubsciption:
     Type: AWS::SNS::Subscription
     Properties: 
       Endpoint: noraghasel@gmail.com
       Protocol: email
-      TopicArn: !Ref SnsTopic
+      TopicArn: !Ref ResultsSendingTopic
+  
 
 Outputs:
-  LambdaTwoArn:
-    Description: "Arn of LambdaFunctionTwo"
-    Value: !GetAtt LambdaFunctionTwo.Arn
+  ResultsSendingLambdaFunction:
+    Description: "Arn of ResultsSendingLambdaFunction"
+    Value: !GetAtt ResultsSendingLambdaFunction.Arn
     Export:
-      Name: snsLambda
+      Name: ResultsSendingLambdaFunction

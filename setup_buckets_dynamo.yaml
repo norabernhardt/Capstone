@@ -1,11 +1,11 @@
 Resources:
 
-  BucketOne:
+  RawDataBucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: bucket-one-raw-data-2022-04-27
 
-  BucketTwo:
+  ConvertedDataBucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: bucket-two-converted-data-2022-04-27
@@ -17,6 +17,7 @@ Resources:
   DynamoDB:
     Type: AWS::DynamoDB::Table
     Properties: 
+      TableName: table-for-preferences
       BillingMode: PROVISIONED
       AttributeDefinitions:
         - AttributeName: "author"
@@ -31,10 +32,9 @@ Resources:
       ProvisionedThroughput: 
         ReadCapacityUnits: "5"
         WriteCapacityUnits: "5"
-      TableName: table-for-preferences
       StreamSpecification:
         StreamViewType: NEW_IMAGE
-    DependsOn: BucketTwo
+    DependsOn: ConvertedDataBucket
 
   EventSourceMapping:
     Type: AWS::Lambda::EventSourceMapping
@@ -42,7 +42,7 @@ Resources:
       BatchSize: 300
       Enabled: True
       EventSourceArn: !GetAtt DynamoDB.StreamArn
-      FunctionName: !ImportValue snsLambda
+      FunctionName: !ImportValue ResultsSendingLambdaFunction
       StartingPosition: "LATEST"
     DependsOn: DynamoDB
 

@@ -32,3 +32,4 @@ for obj in bucket.objects.all():
     key=obj.key
     body=obj.get()["Body"].read()
     write_to_dynamo(body.decode("utf-8"))
+
