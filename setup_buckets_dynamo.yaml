@@ -19,20 +19,42 @@ Resources:
     Properties: 
       BillingMode: PROVISIONED
       AttributeDefinitions:
-        - 
-          AttributeName: "author"
+        - AttributeName: "author"
           AttributeType: "S"
-        - 
-          AttributeName: "isbn"
+        - AttributeName: "isbn"
           AttributeType: "S"
       KeySchema: 
-        - 
-          AttributeName: "author"
+        - AttributeName: "author"
           KeyType: "HASH"
-        - 
-          AttributeName: "isbn"
+        - AttributeName: "isbn"
           KeyType: "RANGE"
       ProvisionedThroughput: 
         ReadCapacityUnits: "5"
         WriteCapacityUnits: "5"
       TableName: table-for-preferences
+      StreamSpecification:
+        StreamViewType: NEW_IMAGE
+    DependsOn: BucketTwo
+
+  EventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      BatchSize: 300
+      Enabled: True
+      EventSourceArn: !GetAtt DynamoDB.StreamArn
+      FunctionName: !ImportValue snsLambda
+      StartingPosition: "LATEST"
+    DependsOn: DynamoDB
+
+Outputs:
+  DynamoDBTableName:
+    Value: !Ref DynamoDB
+    Export:
+      Name: dbName
+  DynamoStreamArn:
+    Description: "Stream Arn of DynamoDB"
+    Value: DynamoDB.StreamArn
+    Export:
+      Name: StreamDB
+
+

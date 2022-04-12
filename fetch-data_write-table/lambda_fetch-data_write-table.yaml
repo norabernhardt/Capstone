@@ -5,7 +5,7 @@ Resources:
     Properties:
       BucketName: lambda-code-bucket-2022-04-27
 
-  LambdaFunction:
+  LambdaFunctionOne:
     Type: AWS::Lambda::Function
     Properties: 
       Runtime: python3.9
@@ -13,15 +13,25 @@ Resources:
       Handler: code_for_zipping.lambda_handler
       FunctionName: fetch-data_write-table
       Timeout: 900
-      
       Code:
-          S3Bucket: 'lambda-code-bucket-2022-04-27'
+          S3Bucket: !Ref BucketThree
           S3Key: 'code_for_zipping.zip'
 
   S3InvokeLambdaPermission: 
     Type: AWS::Lambda::Permission
     Properties: 
-      FunctionName: !Ref LambdaFunction
+      FunctionName: !Ref LambdaFunctionOne
       Action: lambda:InvokeFunction
       Principal: s3.amazonaws.com
       SourceArn: !Sub arn:aws:s3:::bucket-two-converted-data-2022-04-27
+
+Outputs:
+  LambdaOneArn:
+    Description: "Arn of LambdaFunctionOne"
+    Value: !GetAtt LambdaFunctionOne.Arn
+    Export:
+      Name: triggerLambda
+  BucketThreeName:
+    Value: !Ref BucketThree
+    Export: 
+      Name: CodeBucket
