@@ -15,6 +15,7 @@ Resources:
     Properties: 
       FunctionName: fetch-data_write-table
       Role: arn:aws:iam::248461369890:role/LabRole
+      Runtime: python3.9
       Handler: code_for_zipping.lambda_handler
       Timeout: 900
       Code:
