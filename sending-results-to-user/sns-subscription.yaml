@@ -11,6 +11,7 @@ Resources:
       FunctionName: handle_new_titles_sns
       Role: arn:aws:iam::248461369890:role/LabRole
       Handler: handle_new_titles.lambda_sns
+      Runtime: python3.9
       Timeout: 900
       Code:
           S3Bucket: !ImportValue LambdaCodeBucket

@@ -40,13 +40,18 @@ def get_image_value(new_image, key):
     
     
 def has_relevant_title(data):
-    return 'ethno' in data['title'].lower() or 'kultur' in data['keywords'].lower()
+    return 'kultur' in data['title'].lower() or 'kultur' in data['keywords'].lower() or \
+    'ethno' in data['title'].lower() or 'ethno' in data['keywords'].lower() or \
+    'anthro' in data['title'].lower() or 'anthro' in data['keywords'].lower() or \
+    'volk' in data['title'].lower() or 'volk' in data['keywords'].lower() or \
+    'museum' in data['title'].lower() or 'museum' in data['keywords'].lower() or \
+    'völker' in data['title'].lower() or 'völker' in data['keywords'].lower()
 
 def send_result_to_user(data):
     client.publish(
         TopicArn=ResultsSendingTopic,
         Subject="New Books!",
-        Message="Here are some relevant titles: " + data["author"]+"\n Titel: "+ data['title']+ \
+        Message="Here are some relevant titles: ""\n Author: "+ data['author']+"\n Titel: "+ data['title']+ \
         "\n publisher: " + data['publisher']+ " place: " + data["place"]+ \
         "\n year: " + data['year']+ \
         "\n isbn: " + data['isbn']+ \

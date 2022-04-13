@@ -6,4 +6,5 @@ handle_new_titles.zip
 sns-stack.sh
 lambda1-stack.sh
 stack.sh
+mainstack.sh
 package-lock.json
