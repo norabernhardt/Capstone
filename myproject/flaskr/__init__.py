@@ -13,6 +13,24 @@ api_bp = Blueprint("api", __name__)
 def table():
     result=readTable()
     return json.dumps(result)
+doctype='<!DOCTYPE html><html lang="en"><head><link rel="stylesheet"href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/><meta charset="UTF-8"><title>Title</title></head><body><p>Hello from Noris Webserver</p>$placeholder</body></html>'
+@api_bp.route('/bookshtml')
+def html():
+    result=readTable()
+    content=""
+    for item in result:
+        print(item)
+        content=content+"<h4>"+item["title"]+"</h4>"
+        content=content+"<p>"+item["author"]+"</p>"
+        content=content+"<p>"+item["place"]+": "+item["publisher"]+"</p>"
+        content=content+"<p>"+item["year"]+", "+item["edition"]+", "+item["pages"]+"</p>"
+        content=content+"<p>"+item["isbn"]+"</p>"
+        content=content+"<p>"+item["ddc"]+"; "+item["keywords"]+"</p>"
+        content=content+"<a href>"+item["table_url"]+", "+item["summary_url"]+"</a>"
+        #url nicht richtig hinterlegt
+        content=content+"<a href>"+item["summary_url"]+"</a>"
+    return doctype.replace("$placeholder",content)
+
 
 # @api_bp.route('/table/<tablename>')
 # def table(tablename):
