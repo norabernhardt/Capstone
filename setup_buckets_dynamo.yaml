@@ -12,7 +12,7 @@ Resources:
       NotificationConfiguration:
         LambdaConfigurations:
           - Event: 's3:ObjectCreated:*'
-            Function: arn:aws:lambda:eu-central-1:248461369890:function:fetch-data_write-table
+            Function: !ImportValue FetchingLambda
   
   DynamoDB:
     Type: AWS::DynamoDB::Table
@@ -22,12 +22,12 @@ Resources:
       AttributeDefinitions:
         - AttributeName: "author"
           AttributeType: "S"
-        - AttributeName: "isbn"
+        - AttributeName: "keywords"
           AttributeType: "S"
       KeySchema: 
         - AttributeName: "author"
           KeyType: "HASH"
-        - AttributeName: "isbn"
+        - AttributeName: "keywords"
           KeyType: "RANGE"
       ProvisionedThroughput: 
         ReadCapacityUnits: "5"

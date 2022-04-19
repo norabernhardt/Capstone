@@ -1,6 +1,6 @@
 #!/bin/bash
 # CREATE
-aws cloudformation create-stack --stack-name mylambdastack --template-body file://lambda_fetch-data_write-table.yaml
+aws cloudformation create-stack --stack-name mylambdaaastack --template-body file://lambda_fetch-data_write-table.yaml
 # UPDATE
 #aws cloudformation update-stack --stack-name mylambdastack --template-body file://lambda_fetch-data_write-table.yaml
 
