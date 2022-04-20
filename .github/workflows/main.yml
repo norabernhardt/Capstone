@@ -11,5 +11,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: flask
         run: |
-          sh run.sh
+          export FLASK_APP=flaskr
+          export FLASK_ENV=development
+          flask run
 
