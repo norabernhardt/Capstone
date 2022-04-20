@@ -21,6 +21,3 @@ def readTable():
     )
     response["Items"]
     return response["Items"]
-
-#(ensure_ascii=False)
-

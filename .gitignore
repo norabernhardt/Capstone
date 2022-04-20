@@ -8,7 +8,7 @@ lambda1-stack.sh
 stack.sh
 mainstack.sh
 package-lock.json
--testfiles
+-unnecessary
 instance
 venv
 run.sh

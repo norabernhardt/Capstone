@@ -1,10 +1,5 @@
 Resources:
 
-  RawDataBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: bucket-one-raw-data-2022-04-27
-
   ConvertedDataBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -36,15 +31,15 @@ Resources:
         StreamViewType: NEW_IMAGE
     DependsOn: ConvertedDataBucket
 
-  EventSourceMapping:
-    Type: AWS::Lambda::EventSourceMapping
-    Properties:
-      BatchSize: 300
-      Enabled: True
-      EventSourceArn: !GetAtt DynamoDB.StreamArn
-      FunctionName: !ImportValue ResultsSendingLambdaFunction
-      StartingPosition: "LATEST"
-    DependsOn: DynamoDB
+  # EventSourceMapping:
+  #   Type: AWS::Lambda::EventSourceMapping
+  #   Properties:
+  #     BatchSize: 300
+  #     Enabled: True
+  #     EventSourceArn: !GetAtt DynamoDB.StreamArn
+  #     FunctionName: !ImportValue ResultsSendingLambdaFunction
+  #     StartingPosition: "LATEST"
+  #   DependsOn: DynamoDB
 
 Outputs:
   DynamoDBTableName:
