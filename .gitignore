@@ -8,3 +8,9 @@ lambda1-stack.sh
 stack.sh
 mainstack.sh
 package-lock.json
+-unnecessary
+instance
+venv
+run.sh
+test.py
+test2.py

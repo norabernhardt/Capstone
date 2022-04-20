@@ -37,7 +37,7 @@ Outputs:
     Value: !GetAtt DataFetchingLambdaFunction.Arn
     Export:
       Name: FetchingLambda
-  BucketThreeName:
+  LambdaBucket:
     Value: !Ref LambdaCodeBucket
     Export: 
       Name: LambdaCodeBucket

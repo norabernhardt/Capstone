@@ -6,3 +6,5 @@ aws cloudformation create-stack --stack-name bucketstack --template-body file://
 
 sleep 5s
 aws s3 cp ./upload_S3/Reihe-22B13.csv s3://bucket-two-converted-data-2022-04-27
+aws s3 cp ./upload_S3/Reihe-22A13.csv s3://bucket-two-converted-data-2022-04-27
+aws s3 cp ./upload_S3/Reihe-22A12.csv s3://bucket-two-converted-data-2022-04-27
