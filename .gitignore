@@ -12,5 +12,9 @@ package-lock.json
 instance
 venv
 run.sh
-test.py
-test2.py
+ssh.tf
+ollebibbo.pem
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
