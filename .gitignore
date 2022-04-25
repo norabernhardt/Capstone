@@ -10,7 +10,7 @@ flaskproject.zip
 venv
 run.sh
 ssh.tf
-ollebibbo.pem
+bibbo.pem
 .terraform
 .terraform.lock.hcl
 terraform.tfstate
