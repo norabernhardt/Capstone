@@ -1,8 +1,9 @@
 import os
-from flaskr.getTableData import readTable
+from getTableData import readTable
 from flask import Flask, Blueprint
 
 api_bp = Blueprint("api", __name__)
+app = Flask(__name__, instance_relative_config=True)
 
 def readIndexFile():
     with open("index.html", "r") as file:
@@ -25,7 +26,6 @@ def website():
     return contents.replace("$placeholder", content)
 
 def create_app(test_config=None):
-    app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
@@ -43,3 +43,5 @@ def create_app(test_config=None):
 
     app.register_blueprint(api_bp)
     return app
+create_app()
+app.run(host="0.0.0.0", port=80)

@@ -1,12 +1,12 @@
 
 resource "aws_vpc" "bibbo-vpc" {
-  cidr_block = "10.2.0.0/16"
+  cidr_block = "10.1.0.0/16"
 }
 
 resource "aws_subnet" "public-subnet" {
     vpc_id     = aws_vpc.bibbo-vpc.id
-    cidr_block = "10.2.1.0/24"
-    availability_zone = "eu-central-1a"
+    cidr_block = "10.1.1.0/24"
+    availability_zone = "us-west-2a"
 }
 
 resource "aws_internet_gateway" "igw" {
@@ -30,7 +30,6 @@ resource "aws_security_group" "allow_http" {
   name        = "allow_http"
   description = "Allow http traffic"
   vpc_id      = aws_vpc.bibbo-vpc.id
-
   ingress {
     description = "Http"
     from_port   = 80
@@ -38,7 +37,6 @@ resource "aws_security_group" "allow_http" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
   ingress {
     description = "ssh"
     from_port   = 22
@@ -46,7 +44,6 @@ resource "aws_security_group" "allow_http" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
   egress {
     from_port        = 0
     to_port          = 0
@@ -57,14 +54,20 @@ resource "aws_security_group" "allow_http" {
 }
 
 resource "aws_instance" "bibbo-webserver" {
-  ami                         = "ami-01d9d7f15bbea00b7"
+  ami                         = "ami-02b92c281a4d3dc79"
   instance_type               = "t2.micro"
+  availability_zone           = "us-west-2a"
   subnet_id                   = aws_subnet.public-subnet.id
   associate_public_ip_address = true
   key_name                    = aws_key_pair.ssh.key_name
   security_groups             = [aws_security_group.allow_http.id]
-  user_data                   = file("userdata.sh")
+  iam_instance_profile        = "LabInstanceProfile"
+  user_data                   = "${file("modules/tf-user-data.sh")}"
    tags                      = {
         Name = "bibbo-webserver"
         }
+}
+resource "aws_eip" "bibbo-webserver" {
+  instance = aws_instance.bibbo-webserver.id
+  vpc      = true
 }

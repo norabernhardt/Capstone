@@ -3,13 +3,10 @@ __pycache__
 upload_S3
 code_for_zipping.zip
 handle_new_titles.zip
-sns-stack.sh
-lambda1-stack.sh
-stack.sh
 mainstack.sh
 package-lock.json
 -unnecessary
-instance
+flaskproject.zip
 venv
 run.sh
 ssh.tf
