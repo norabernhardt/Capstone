@@ -9,6 +9,17 @@ Resources:
           - Event: 's3:ObjectCreated:*'
             Function: !ImportValue FetchingLambda
   
+  FlaskBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: flask-bucket-2022-04-27
+
+  # FlaskBucketPolicy:
+  #   Type: AWS::S3::BucketPolicy
+  #   Properties: 
+  #     Bucket: String
+  #     PolicyDocument: Json
+  
   DynamoDB:
     Type: AWS::DynamoDB::Table
     Properties: 
@@ -31,25 +42,11 @@ Resources:
         StreamViewType: NEW_IMAGE
     DependsOn: ConvertedDataBucket
 
-  # EventSourceMapping:
-  #   Type: AWS::Lambda::EventSourceMapping
-  #   Properties:
-  #     BatchSize: 300
-  #     Enabled: True
-  #     EventSourceArn: !GetAtt DynamoDB.StreamArn
-  #     FunctionName: !ImportValue ResultsSendingLambdaFunction
-  #     StartingPosition: "LATEST"
-  #   DependsOn: DynamoDB
-
 Outputs:
   DynamoDBTableName:
     Value: !Ref DynamoDB
     Export:
       Name: dbName
-  DynamoStreamArn:
-    Description: "Stream Arn of DynamoDB"
-    Value: DynamoDB.StreamArn
-    Export:
-      Name: StreamDB
+ 
 
 
