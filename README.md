@@ -7,16 +7,16 @@ bibbo is a use case for scientific libraries and reads files from the weekly "ne
 
 
 ### Tools ☁
-- Automated Upload to S3
+- Automated upload to S3
 - Infrastructure as Code 
-    - Cloud Formation
+    - Amazon CloudFormation
     - Terraform
-- DynamoDB
+- Amazon DynamoDB (noSQL)
 - Flask API
-- AWS Lambda 
-- AWS Cloud Front
-- VPC 
-- HTML Website
+- Amazon Lambda 
+- Amazon Cloudwatch
+- Amazon VPC 
+- HTML
 
 #
 ![First Sketch](./screenshots/nora_bernhardt.png)
