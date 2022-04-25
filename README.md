@@ -19,7 +19,7 @@ bibbo is a use case for scientific libraries and reads files from the weekly "ne
 - HTML
 
 #
-![First Sketch](./screenshots/nora_bernhardt.pn)
+![First Sketch](./screenshots/nora_bernhardt.png)
 #
 bibbo is a service developed as capstone project at the end of a 12-weeks AWS re/Start Cloud Developer Bootcamp with [neuefische - School and Pool for Digital Talent](https://www.neuefische.de/).
 
